@@ -209,7 +209,8 @@ exports.updateProduct = async (req, res) => {
 
 exports.deleteProduct = async (req, res) => {
     try {
-        const product = await Product.findByIdAndRemove(req.params.id);
+        // Use findByIdAndDelete instead of findByIdAndRemove
+        const product = await Product.findByIdAndDelete(req.params.id);
         if (!product) return res.status(404).json({ error: 'Product not found' });
 
         // Delete associated image file
